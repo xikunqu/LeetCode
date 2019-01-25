@@ -21,18 +21,10 @@
 
 class Solution:
 
-    def fanwei(self,x):
-        if -2**31<=x<=2**31-1:
-            return True
-        else:
-            return False
-
     def get_num(self,x):
-        a=list(str(x))
-        num=0
-        for i in range(len(a)-1,-1,-1):
-            num=num+(10**i)*int(a[i])
-        return num
+        a=str(x)
+        num=a[::-1]
+        return int(num)
 
     def reverse(self, x):
         """
@@ -42,20 +34,15 @@ class Solution:
         if x<0:
             x=abs(x)
             num=-self.get_num(x)
-            if self.fanwei(num):
-                return num
-            else:
-                return 0
-        elif x==0:
-            return 0
         else:
             num=self.get_num(x)
-            if self.fanwei(num):
-                return num
-            else:
-                return 0
+
+        if  -2**31<=num<=2**31-1:
+            return num
+        else:
+            return 0
 
 
 
-s=Solution().reverse(120)
+s=Solution().reverse(-120)
 print(s)
